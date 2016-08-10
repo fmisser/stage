@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-COMPATIBLE" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <title>用户列表</title>
+    <link rel="stylesheet" th:href="@{/bootstrap-3.3.5-dist/css/bootstrap.css}"/>
+    <link rel="stylesheet" th:href="@{/css/signin.css}"/>
+</head>
+<body>
+    <div class="panel panel-default">
+        <div class="panel-heading">用户列表</div>
+        <div class="panel-body">
+            <p>所有的用户数据</p>
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Account</th>
+                    <th>Role</th>
+                </tr>
+            </thead>
+            <tbody th:remove="all-but-first">
+                <tr th:each="user:${users}">
+                    <td th:text="${user.id}">User ID</td>
+                    <td th:text="${user.username}">User Account</td>
+                    <td th:each="role:${user.roles}">
+                        <p th:text="${role.role}">User Role</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>
